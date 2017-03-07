@@ -24,7 +24,7 @@ function sendRequest(event) {
     }
     GM_xmlhttpRequest({
       method: 'GET', 
-      url: 'http://chat.stackoverflow.com/rooms/' + room, 
+      url: 'http://chat.stackoverflow.com/rooms/' + room,
       onload: function (response) {
         var fkey = response.responseText.match(/hidden" value="([\dabcdef]{32})/)[1];
         var reportStr = '!!/report ' + link;
@@ -37,7 +37,7 @@ function sendRequest(event) {
       }
     });
   }
-};
+}
 
 window.addEventListener('message', sendRequest, false);
 
@@ -48,7 +48,7 @@ const ScriptToInject = function() {
       this.addEventListener('load', callback.bind(null, this), false);
       open.apply(this, arguments);
     };
-  };
+  }
 
   function addReportLink(postId) {
     var $posts;
@@ -69,8 +69,8 @@ const ScriptToInject = function() {
           window.postMessage(messageTxt, "*");
       }));
     });
-  };
-    
+  }
+
   addXHRListener(function(xhr) {
     let matches = /question" data-questionid="(\d+)/.exec(xhr.responseText);
     if (matches === null) {
@@ -83,9 +83,9 @@ const ScriptToInject = function() {
   });
 
   $(document).ready(function() {
-    addReportLink(); 
+    addReportLink();
   });
-}
+};
 
 const ScriptToInjectNode = document.createElement('script');
 document.body.appendChild(ScriptToInjectNode);
